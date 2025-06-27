@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary!</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #ff758c;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555;
+            font-size: 1.2em;
+        }
+        .love {
+            font-size: 2.5em;
+            color: #ff758c;
+            margin: 20px 0;
+            animation: pulse 1.2s infinite alternate;
+        }
+        @keyframes pulse {
+            to { transform: scale(1.15); }
+        }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+        }
+        #countdown {
+            display: flex;
+            gap: 18px;
+        }
+        .cd-box {
+            background: #fff0f6;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(255,117,140,0.10);
+            padding: 18px 12px 10px 12px;
+            min-width: 65px;
+            text-align: center;
+            animation: pop 0.7s;
+        }
+        .cd-number {
+            font-size: 2.1em;
+            color: #ff758c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .cd-label {
+            font-size: 0.95em;
+            color: #ffb199;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .love-drop {
+            position: fixed;
+            top: -40px;
+            z-index: 9999;
+            color: #ff758c;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: love-fall linear forwards;
+        }
+        @keyframes love-fall {
+            to {
+                transform: translateY(110vh) rotate(30deg);
+                opacity: 0.7;
+            }
+        }
+        .anniv-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 12px rgba(255,117,140,0.15);
+            border: 4px solid #fff0f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="love-rain"></div>
+    <div class="card">
+        <div class="love">❤️</div>
+        <img src="Gambar WhatsApp 2025-06-25 pukul 22.48.52_e54ede7f.jpg" alt="Foto Anniversary" class="anniv-img">
+        <h1>Happy Anniversary!</h1>
+        <p> Terima kasih telah menjadi bagian terindah dalam hidupku. Semoga cinta kita selalu tumbuh dan abadi selamanya. Aku mencintaimu! 💖</p>
+        <div class="love">💑</div>
+        <a href="special.html" style="display:inline-block;margin-top:20px;color:#ff758c;text-decoration:none;font-weight:bold;">Lihat Halaman Spesial &rarr;</a>
+    </div>
+    <div class="countdown-container">
+        <div id="countdown"></div>
+    </div>
+    <script>
+        const anniversaryDate = new Date('2025-06-29T00:00:00');
+        function updateCountdown() {
+            const now = new Date();
+            const diff = anniversaryDate - now;
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = '<span style="color:#ff758c;font-size:1.5em;font-weight:bold;">Selamat Anniversary!</span>';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+            document.getElementById('countdown').innerHTML = `
+                <div class='cd-box'><div class='cd-number'>${days}</div><div class='cd-label'>Hari</div></div>
+                <div class='cd-box'><div class='cd-number'>${hours}</div><div class='cd-label'>Jam</div></div>
+                <div class='cd-box'><div class='cd-number'>${minutes}</div><div class='cd-label'>Menit</div></div>
+                <div class='cd-box'><div class='cd-number'>${seconds}</div><div class='cd-label'>Detik</div></div>
+            `;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Animasi hujan love
+        function createLove() {
+            const love = document.createElement('div');
+            love.className = 'love-drop';
+            love.innerHTML = '❤';
+            love.style.left = Math.random() * 100 + 'vw';
+            love.style.animationDuration = (2 + Math.random() * 2) + 's';
+            love.style.fontSize = (18 + Math.random() * 22) + 'px';
+            document.body.appendChild(love);
+            setTimeout(() => love.remove(), 4000);
+        }
+        setInterval(createLove, 250);
+    </script>
+</body>
+</html> 
